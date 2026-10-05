@@ -1,0 +1,612 @@
+/* ==========================================================
+   PALETA — cambia solo estos valores para ajustar los colores
+   de toda la página (aquí van colores aproximados, no los
+   exactos de vencedora.online)
+   ========================================================== */
+:root {
+  --color-fondo: #fffaf8;
+  --color-fondo-alt: #f8ebe8;
+  --color-superficie: #ffffff;
+  --color-texto: #2b2326;
+  --color-texto-suave: #6e6064;
+  --color-principal: #d41c1c;
+  --color-principal-oscuro: #a83556;
+  --color-acento: #c9a24d;
+  --color-borde: #ecdcd8;
+
+  --fuente-titulos: Georgia, "Times New Roman", serif;
+  --fuente-texto:
+    "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+
+  --radio: 10px;
+  --sombra: 0 4px 14px rgba(43, 35, 38, 0.08);
+  --ancho-max: 1140px;
+}
+
+/* ---------- Base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  margin: 0;
+  font-family: var(--fuente-texto);
+  color: var(--color-texto);
+  background: var(--color-fondo);
+  line-height: 1.6;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: var(--color-principal);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--color-principal-oscuro);
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--fuente-titulos);
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 0.6em;
+}
+
+h1 {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+}
+h2 {
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  text-align: center;
+}
+h3 {
+  font-size: 1.15rem;
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-acento);
+  outline-offset: 2px;
+}
+
+.visualmente-oculto {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ---------- Secciones ---------- */
+main > section {
+  padding: 4rem 1.25rem;
+}
+
+main
+  > section
+  > *:not(.hero-texto):not(.hero-imagen):not(.nosotros-imagen):not(
+    .nosotros-texto
+  ) {
+  max-width: var(--ancho-max);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+main > section > h2 {
+  margin-bottom: 2rem;
+}
+
+/* ---------- Botones ---------- */
+.boton {
+  display: inline-block;
+  padding: 0.75rem 1.6rem;
+  font: inherit;
+  font-weight: 600;
+  color: #fff;
+  background: var(--color-principal);
+  border: 2px solid var(--color-principal);
+  border-radius: 999px;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    border-color 0.2s;
+}
+
+.boton:hover {
+  color: #fff;
+  background: var(--color-principal-oscuro);
+  border-color: var(--color-principal-oscuro);
+}
+
+/* ---------- Encabezado ---------- */
+.encabezado {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 0.9rem 1.25rem;
+  background: var(--color-superficie);
+  border-bottom: 1px solid var(--color-borde);
+}
+
+.logo {
+  font-family: var(--fuente-titulos);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-texto);
+}
+
+.menu ul {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.menu a {
+  color: var(--color-texto);
+  font-weight: 500;
+  padding-bottom: 2px;
+  border-bottom: 2px solid transparent;
+}
+
+.menu a:hover {
+  color: var(--color-principal);
+  border-bottom-color: var(--color-acento);
+}
+
+.boton-carrito {
+  padding: 0.5rem 1.1rem;
+  font-weight: 600;
+  color: var(--color-principal);
+  border: 2px solid var(--color-principal);
+  border-radius: 999px;
+}
+
+.boton-carrito:hover {
+  color: #fff;
+  background: var(--color-principal);
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 2.5rem;
+  max-width: var(--ancho-max);
+  margin: 0 auto;
+}
+
+.hero-texto p {
+  max-width: 46ch;
+  font-size: 1.1rem;
+  color: var(--color-texto-suave);
+}
+
+.hero-imagen img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+}
+
+.hero-imagen,
+.nosotros-imagen {
+  margin: 0;
+}
+
+/* ---------- Categorías ---------- */
+.categorias {
+  background: var(--color-fondo-alt);
+}
+
+.lista-categorias {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 1.5rem;
+}
+
+.lista-categorias a {
+  display: block;
+  overflow: hidden;
+  background: var(--color-superficie);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+  color: var(--color-texto);
+  text-align: center;
+  font-family: var(--fuente-titulos);
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.lista-categorias img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.lista-categorias a:hover img {
+  transform: scale(1.04);
+}
+
+.lista-categorias span {
+  display: block;
+  padding: 0.9rem 0.5rem;
+}
+
+/* ---------- Catálogo ---------- */
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding: 1.25rem;
+  background: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio);
+}
+
+.filtros .campo {
+  flex: 1 1 200px;
+}
+
+.grilla-productos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.75rem;
+}
+
+.producto {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+}
+
+.producto-enlace {
+  overflow: hidden;
+}
+
+.producto-enlace img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.producto:hover .producto-enlace img {
+  transform: scale(1.05);
+}
+
+.producto-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 1.1rem;
+}
+
+.producto-info h3 {
+  margin-bottom: 0.3em;
+}
+
+.producto-descripcion {
+  flex: 1;
+  font-size: 0.95rem;
+  color: var(--color-texto-suave);
+}
+
+.producto-precio {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-principal);
+}
+
+.producto-info .boton {
+  width: 100%;
+  text-align: center;
+}
+
+/* ---------- Sobre nosotros ---------- */
+.nosotros {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 2.5rem;
+  max-width: var(--ancho-max);
+  margin: 0 auto;
+}
+
+.nosotros-imagen img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+}
+
+.nosotros-texto h2 {
+  text-align: left;
+}
+
+/* ---------- Cómo pedir ---------- */
+.pedidos {
+  background: var(--color-fondo-alt);
+}
+
+.pasos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 1.5rem;
+  counter-reset: paso;
+}
+
+.pasos li {
+  position: relative;
+  padding: 3.2rem 1.25rem 1.25rem;
+  background: var(--color-superficie);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+  counter-increment: paso;
+}
+
+.pasos li::before {
+  content: counter(paso);
+  position: absolute;
+  top: 1rem;
+  left: 1.25rem;
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--color-acento);
+  border-radius: 50%;
+}
+
+.pasos p {
+  margin: 0;
+  color: var(--color-texto-suave);
+}
+
+/* ---------- Carrito ---------- */
+.tabla-carrito {
+  width: 100%;
+  margin-bottom: 1.5rem;
+  border-collapse: collapse;
+  background: var(--color-superficie);
+  border-radius: var(--radio);
+  overflow: hidden;
+  box-shadow: var(--sombra);
+}
+
+.tabla-carrito caption {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.tabla-carrito th,
+.tabla-carrito td {
+  padding: 0.9rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--color-borde);
+}
+
+.tabla-carrito thead th {
+  color: #fff;
+  background: var(--color-principal);
+}
+
+.tabla-carrito tfoot th,
+.tabla-carrito tfoot td {
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-bottom: 0;
+}
+
+/* ---------- Formularios ---------- */
+.formulario {
+  max-width: 640px;
+  display: grid;
+  gap: 1.25rem;
+}
+
+fieldset {
+  margin: 0;
+  padding: 1.25rem;
+  background: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio);
+  display: grid;
+  gap: 1rem;
+}
+
+legend {
+  padding: 0 0.5rem;
+  font-family: var(--fuente-titulos);
+  font-weight: 700;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+label {
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="search"],
+select,
+textarea {
+  width: 100%;
+  padding: 0.7rem 0.85rem;
+  font: inherit;
+  color: var(--color-texto);
+  background: #fff;
+  border: 1px solid var(--color-borde);
+  border-radius: 8px;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--color-principal);
+  outline: 2px solid var(--color-principal);
+  outline-offset: 0;
+}
+
+.campo-opcion {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.campo-opcion input {
+  accent-color: var(--color-principal);
+}
+
+.formulario .boton {
+  justify-self: start;
+}
+
+/* ---------- Contacto ---------- */
+.contacto > h2,
+.contacto > p,
+.contacto > address {
+  text-align: center;
+}
+
+.contacto address {
+  margin-bottom: 2rem;
+  font-style: normal;
+}
+
+.contacto address li {
+  margin-bottom: 0.3rem;
+}
+
+.contacto .formulario {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ---------- Pie ---------- */
+.pie {
+  padding: 2.5rem 1.25rem;
+  text-align: center;
+  color: #f1e4e1;
+  background: var(--color-texto);
+}
+
+.pie-logo {
+  font-family: var(--fuente-titulos);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.pie ul {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.pie a {
+  color: #f1e4e1;
+}
+
+.pie a:hover {
+  color: var(--color-acento);
+}
+
+.pie-copy {
+  margin: 0;
+  font-size: 0.85rem;
+  opacity: 0.75;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 800px) {
+  .hero,
+  .nosotros {
+    grid-template-columns: 1fr;
+  }
+
+  .nosotros-texto h2 {
+    text-align: center;
+  }
+
+  .encabezado {
+    justify-content: center;
+  }
+
+  .menu ul {
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  main > section {
+    padding: 3rem 1rem;
+  }
+
+  .tabla-carrito {
+    display: block;
+    overflow-x: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    transition: none !important;
+  }
+}
